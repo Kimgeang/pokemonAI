@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<button> </button>
+    <script>
+        // 이미지 데이터 받아오는 ajax
+        function input_img() {
+            let user_img = $('#input_img')[0].files[0]
+
+            $.ajax({
+                type: "POST", //요청 메소드 방식
+                url: "/main",
+                contentType: false,
+                processData: false,
+                dataType: {'give_img':user_img}, //서버가 요청 URL을 통해서 응답하는 내용의 타입
+                success: function (response) {
+                    alert(response);
+                },
+
+            })
+        }
+
+        // 버튼 호버 jquery를 사용하여 구현하기
+        $(function () {
+
+            /* 클래스 conatiner 안에 img 에 마우스를 올려놓으면 function 실행*/
+            $("#upload_button").hover(function () {
+
+                /* this(img를 뜻함)의 경로를 바꾼다. 어떤 경로? "src"의 경로를. 그리고 경로주소는 this(img)의 src 속성안에 있는 ".png"를 "_over.png"로 바꾼다. 즉, <img src="image.png"> 에서 <img src="image_over.png" 로 바뀌는 거임.*/
+                $(this).attr("src-기존 이미지주소 넣어주기", $(this).attr("src").replace(".png-기존 이미지", "_over.png-변경된이미지"));
+            }, function () {
+
+                /* 마우스 오버가 아니면 다음을 실행한다. this(img)의 src 경로를 "_over" 이라는 글자를 없앤다. "" 따옴표안에는 아무것도 없으니까 _over 글자를 뺀다는 의미. 즉, <img src="image_over.png"> 에서 <img src="image.png"> 가 된다.*/
+                $(this).attr("src - 변경된 이미지 주소", $(this).attr("src").replace("_over-변경된 이미지", "-기존 이미지"));
+            });
+        });
+
+    </script>
+</body>
+</html>
