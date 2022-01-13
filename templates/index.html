@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pokemon test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="../static/index_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="test-form">
+        <div class="test-title">
+            <div class="title-box">
+                <div class="monster-ball"></div>
+                <div class="title">포켓몬상 테스트</div>
+                <div class="monster-ball"></div>
+            </div>
+        </div>
+
+        <div class="test-subtitle">나와 닮은 포켓몬은 무엇일까요?</div>
+
+        <div class="image-area">
+            <span class="material-icons-outlined">perm_media</span>
+            <p class="image-area-text">사진을 올려주세요</p>
+        </div>
+
+        <div class="button-area" onclick="exe()">
+            <div id="button-1">실행 chu?</div>
+            <div id="button-img-1"><img src="../static/img/exechu.jpg"></div>
+        </div>
+        <div class="waiting">
+            데이터 분석chu.....
+        </div>
+        <div class="result-container">
+            <div class="result">
+                <div id="prof-img"></div>
+                <div class="desc">흠.. 어디보자... <br>자네와 가장 닮은 포켓몬은 파오리로군!</div>
+            </div>
+            <div class="result-image">
+                <img src="../static/img/result/Farfetchd.png">
+            </div>
+            <div class="result-button">
+                <div class="return-button">
+                    <div id="button-2">돌아가기</div>
+                    <div id="button-img-2"><img src="../static/img/return.jpg"></div>
+                </div>
+                <div class="share-button">
+                    <div id="button-3">공유하기</div>
+                    <div id="button-img-3"><img src="../static/img/share.png"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    function exe() {
+        $('.test-subtitle').hide()
+        $('.image-area').hide()
+        $('.button-area').hide()
+        $('.waiting').css({
+            display: 'flex'
+        });
+
+        setTimeout(function () {
+            $('.waiting').hide()
+            $('.result-container').show()
+        }, 3000);
+    }
+</script>
+
+</html>
