@@ -6,10 +6,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/pokemon.css">
 </head>
 
 <body>
-    <button> </button>
+    <!--첫번째 화면-->
+    <div class="screen">
+        <div class="screen_title">
+           <p><img src="../images/free-icon-pokeball-743977.png" width="36px" height="36px">
+            나와 닮은 포켓몬
+            <img src="../images/free-icon-pokeball-743977.png" width="36px" height="36px"></p>
+        </div>
+        <div id="first_screen_question">
+            <p>나를 닮은 포켓몬은 무엇일까요?</p>
+        </div>
+        <div id="photo_adjustment">
+            <div id="imgbox">
+            <p>사진을 끌어 넣어 보세요! </p>
+            </div>
+        </div>
+        <div id="first_screen_start_button"><button class="start_click">
+                <p>실행 chu?<img src="https://media.giphy.com/media/NfmqJkgxr6VEc/giphy.gif" alt="" id="animated1"></p>
+            </button>
+        </div>
+    </div>
+        <!--로딩 화면-->
+    <div class="screen">
+        <div class="screen_title">
+            <img src="../images/free-icon-pokeball-743977.png" width="36px" height="36px">
+            <p>나와 닮은 포켓몬</p>
+            <img src="../images/free-icon-pokeball-743977.png" width="36px" height="36px">
+        </div>
+            <!--마지막 화면-->
+    <div class="screen">
+        <div class="screen_title">
+            <img src="../images/free-icon-pokeball-743977.png" width="36px" height="36px">
+            <p>나와 닮은 포켓몬</p>
+            <img src="../images/free-icon-pokeball-743977.png" width="36px" height="36px">
+        </div>
+
+        <div id="last_screen_result">
+            <div>
+                <p>닮은 꼴 포켓몬 사진</p>
+            </div>
+        </div>
+
+        <div id="last_screen_result_contents">
+            <div>
+                <p>실행 결과</p>
+                <p>당신은 ---</p>
+            </div>
+        </div>
+
+
+
+        <div id="last_screen_bottom">
+            <div id="last_screen_return_button"><button class="start_click">
+                    <p>처음으로 돌아가기</p> <img src="../images/turtle1.png" alt="" width="100px" height="100px"
+                        border-radius="50%" id="static2">
+                    <img src="https://t1.daumcdn.net/cfile/tistory/276C463958D371D817" alt="" id="animated2">
+                </button></div>
+
+            <div id="last_screen_share_button"><button class="start_click">
+                    <p>친구에게 공유하기</p> <img src="../images/fire1.png" alt="" id="static3">
+                    <img src="https://thumbs.gfycat.com/AssuredSecretLeonberger-size_restricted.gif" alt=""
+                        id="animated3">
+                </button></div>
+
+        </div>
+
     <script>
         // 이미지 데이터 받아오는 ajax
         function input_img() {
@@ -43,6 +108,49 @@
             });
         });
 
+        $('.content')
+            .on("dragover", dragOver)
+            .on("dragleave", dragOver)
+            .on("drop", uploadFiles);
+
+        function dragOver(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            if (e.type == "dragover") {
+                $(e.target).css({
+                    "background-color": "black",
+                    "outline-offset": "-20px"
+                });
+            } else {
+                $(e.target).css({
+                    "background-color": "gray",
+                    "outline-offset": "-10px"
+                });
+            }
+        }
+
+        function uploadFiles(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            dragOver(e);
+
+            e.dataTransfer = e.originalEvent.dataTransfer;
+            var files = e.target.files || e.dataTransfer.files;
+            if (files.length > 1) {
+                alert('하나만 올려라.');
+                return;
+            }
+            if (files[0].type.match(/image.*/)) {
+                $(e.target).css({
+                    "background-image": "url(" + window.URL.createObjectURL(files[0]) + ")",
+                    "outline": "none",
+                    "background-size": "100% 100%"
+                });
+            } else {
+                alert('이미지가 아닙니다.');
+                return;
+            }
+        }
     </script>
 </body>
 
