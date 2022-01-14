@@ -15,58 +15,58 @@
 </head>
 
 <!--수정-->
-<!--전체 크기 늘리기-->
-<!--유저사진데이터 넣는곳 택스트(사진을 끌어 넣어 보세요)글자 가운데로 수정-->
+<!--유저사진데이터 넣는곳 택스트(사진을 끌어 넣어 보세요)글자 가운데로 수정 ->display: block 때문에 문제-->
 <!--로딩창 이미지 글 가운데로 수정 -->
-<!--마지막 결과창 버튼 가로로정렬하기 -->
+<!--css : 스크린 사이즈를 맞추기 위해 body에있는 contents들을 다 .screen으로 빼고 bodydp display:flex를 먹이니
+로딩창과 last_screen 내용이 나란히 나열되는 현상.-->
 
 
 <body>
-<!--스타일 body display:grid로 수정-->
-<!--**첫번째 화면-->
-<div class="screen">
-    <div class="screen_title">
-        <p><img src="../images/free-icon-pokeball-743977.png" width="36px" height="36px">
-            나와 닮은 포켓몬
-            <img src="../images/free-icon-pokeball-743977.png" width="36px" height="36px"></p>
-    </div>
-    <div id="first_screen_question">
-        <p>나를 닮은 포켓몬은 무엇일까요?</p>
-    </div>
-    <!--        숨길 div를 묶어주기위해 div 설정-->
-    <div class="div_hide">
-        <div id="photo_adjustment">
-            <!--            **드레그엔 드랍 구역-->
-            <!--            스타일 수정-->
-            <!--            width 100% height 100%-->
-            <div id="imgbox" class="input_img" style='width: 100%; height: 100%; display:block;'>
-                <p class="text_hide">사진을 끌어 넣어 보세요! </p>
+    <!--스타일 body display:grid로 수정-->
+    <!--**첫번째 화면-->
+    <div class="screen">
+        <div class="screen_title">
+            <img src="../images/free-icon-pokeball-743977.png" width="36px" height="36px">
+            <p>나와 닮은 포켓몬</p>
+            <img src="../images/free-icon-pokeball-743977.png" width="36px" height="36px">
+            </p>
+        </div>
+        <div id="first_screen_question">
+            <p>나를 닮은 포켓몬은 무엇일까요?</p>
+        </div>
+        <!--        숨길 div를 묶어주기위해 div 설정-->
+        <div class="div_hide">
+            <div id="photo_adjustment">
+                <!--            **드레그엔 드랍 구역-->
+                <!--            스타일 수정-->
+                <!--            width 100% height 100%-->
+                <div id="imgbox" class="input_img" style='width: 100%; height: 100%; display:block;'>
+                    <p class="text_hide">사진을 끌어 넣어 보세요! </p>
+                </div>
+            </div>
+            <!--       실행chu 버튼을 실행시 온클릭의 함수 수정해야됨 현재 flask와 연결이 안되서 ajax 통신을 할 수없는 상황이라 값을 넣어놓지 않았음-->
+
+            <div id="first_screen_start_button">
+                <button class="start_click">
+                    <p>실행 chu?</p>
+                    <img src="../images/pikachu1.png" alt="" id="static1">
+                    <img src="https://media.giphy.com/media/NfmqJkgxr6VEc/giphy.gif" alt="" id="animated1">
+                </button>
             </div>
         </div>
-        <!--       실행chu 버튼을 실행시 온클릭의 함수 수정해야됨 현재 flask와 연결이 안되서 ajax 통신을 할 수없는 상황이라 값을 넣어놓지 않았음-->
-
-        <div id="first_screen_start_button">
-            <button class="start_click">
-                <p>실행 chu?</p>
-                <img src="../images/pikachu1.png" alt="" id="static1">
-                <img src="https://media.giphy.com/media/NfmqJkgxr6VEc/giphy.gif" alt="" id="animated1">
-            </button>
+    </div>
+    </div>
+    <!--**로딩 화면-->
+    <div id="loading_screen" class="loading_hs" style="display: none;">
+        <img height="240px"
+            src="https://post-phinf.pstatic.net/MjAxODAzMjJfMTU1/MDAxNTIxNjk1MjA4NjQw.0u5eFltqVGXX82UCzbq0eByAxq3SIpGMjvnh5tPHtewg.gmteItEObSTt-wbo60O9tkhdAQ3Iafj1YExJnOGwn1og.GIF/tumblr_m2nz2oZu2S1qkb6keo1_500.gif?type=w1200">
+        <div id="loading_data_text">
+            <h2>얼굴 분석중 ...</h2>
         </div>
     </div>
-</div>
-</div>
-<!--**로딩 화면-->
-<div id="loading_screen" class="loading_hs" style="display: none;">
-    <img height="240px"
-         src="https://post-phinf.pstatic.net/MjAxODAzMjJfMTU1/MDAxNTIxNjk1MjA4NjQw.0u5eFltqVGXX82UCzbq0eByAxq3SIpGMjvnh5tPHtewg.gmteItEObSTt-wbo60O9tkhdAQ3Iafj1YExJnOGwn1og.GIF/tumblr_m2nz2oZu2S1qkb6keo1_500.gif?type=w1200">
-    <div id="loading_data_text">
-        <h2>얼굴 분석중 ...</h2>
-    </div>
-</div>
 
-<!--**결과창 화면-->
-<div class="last_screen" style="display: none;">
-    <!--    마지막 결과창 제목 삭제함- {사유 = 불필요}-->
+    <!--**결과창 화면-->
+    <div class="last_screen" style="display: none;">
         <div id="last_screen_result">
             <div>
                 <p>닮은 꼴 포켓몬 사진</p>
@@ -75,32 +75,36 @@
 
         <div id="last_screen_result_contents">
             <div>
+                <img id="doctor" src="../images/doctor.png">
+            </div>
+
+            <div>
                 <p>실행 결과</p>
                 <!--            **실행 결과값 입력 하는곳-->
                 <p>당신은 ---</p>
             </div>
         </div>
-<!--        **처음으로 돌아가기 버튼 구역-->
+        <!--        **처음으로 돌아가기 버튼 구역-->
         <div id="last_screen_bottom">
             <div id="last_screen_return_button">
                 <button class="start_click">
                     <p>처음으로 돌아가기</p> <img src="../images/turtle1.png" alt="" width="100px" height="100px"
-                                          border-radius="50%" id="static2">
+                        border-radius="50%" id="static2">
                     <img src="https://t1.daumcdn.net/cfile/tistory/276C463958D371D817" alt="" id="animated2">
                 </button>
             </div>
-<!--           ** 공유하기 버튼 구역-->
+            <!--           ** 공유하기 버튼 구역-->
             <div id="last_screen_share_button">
                 <button class="start_click">
                     <p>친구에게 공유하기</p> <img src="../images/fire1.png" alt="" id="static3">
                     <img src="https://thumbs.gfycat.com/AssuredSecretLeonberger-size_restricted.gif" alt=""
-                         id="animated3">
+                        id="animated3">
                 </button>
             </div>
         </div>
-</div>
+    </div>
 
-<script>
+    <script>
         // 이미지 데이터 받아오는 ajax
         function input_img() {
 
@@ -137,14 +141,14 @@
 
 
         //     화면을 연속으로 바꿔주는 제이쿼리 함수
-            $('.start_click').click(function () {
-                $('.div_hide').hide()
-                $('.loading_hs').show(2000);
-                setTimeout(() =>{
-                    $('.loading_hs').hide(0)
-                    $('.last_screen').show(1000)
-                    },5000);
-            })
+        $('.start_click').click(function () {
+            $('.div_hide').hide()
+            $('.loading_hs').show(2000);
+            setTimeout(() => {
+                $('.loading_hs').hide(0)
+                $('.last_screen').show(1000)
+            }, 5000);
+        })
 
 
         // $('#toggle').click(function () {
@@ -205,4 +209,5 @@
         }
     </script>
 </body>
+
 </html>
